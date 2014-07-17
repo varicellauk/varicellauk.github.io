@@ -30,11 +30,11 @@ var MapsLib = MapsLib || {}; MapsLib.schemaVersion = 2;
     // See https://developers.google.com/fusiontables/docs/v1/migration_guide for more info
 
     // The encrypted Table ID of your Fusion Table (found under File => About)
-    MapsLib.fusionTableId = "13xmU6wANRJb0Niqcdz5Tr0xWh4AyV0yN10xMxPc";
+    MapsLib.fusionTableId = "1GS6REYeP3gcm4bXGEZCRXZASB6SoiatBr820t3c"; //varicella.uk table id
 
     // *New Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
     // *Important* this key is for demonstration purposes. please register your own.
-    MapsLib.googleApiKey ="AIzaSyAMVBSXes-6P-gWaxRj20GK8NT6WDVpozM";
+    MapsLib.googleApiKey ="AIzaSyALRwzYjAfrYz3vRsV5uytc-XhXOLkaTIM"; //varicella.uk API key
     
 
     // DONE!  YOU COULD DELETE EVERYTHING AFTER THIS POINT AND STILL HAVE A WORKING APP.
@@ -147,16 +147,13 @@ $.extend(MapsLib, {
     // 3. CUSTOM CONTENT //
     ///////////////////////
 
-/*
     // Title bar (including title of website)
-    title: "SF Restaurant Inspections",
+    title: "Varicella (Chicken Pox) vaccination clinics UK",
 
     // Contents of the About Page.  You can use "{title}" to insert your title.
-    aboutPage: " \
-        <h3>About {title}</h3> \
-        <p>This is a demonstration of a Mobile Template using Fusion Tables.    Developed by SF Brigade for Code For America, it's an adaptation of Derek Eder's searchable Fusion Table template, licensed under the <a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/License' target='_blank'>MIT License</a>.    This particular application uses health inspection data for businesses in San Francisco.</p> \
-        <p>To use this template for your own Fusion Table data, <a href='https://github.com/sfbrigade/Mobile-Fusion-Tables' target='_blank'>clone this repository</a> and replace the fields inside fusiontable_settings.js to match your content.</p> \
-        ",
+    aboutPage: "", //Use the "about" information hardcoded into index.html
+
+/*
 
     // If you already customized your marker styles and infoboxes within the Fusion Table,
     // you can use them by setting the style and template IDs here.
@@ -200,32 +197,11 @@ $.extend(MapsLib, {
     // listViewSortByColumn (optional): specify column to sort by, instead of sorting by distance
     //                                  append "DESC" to sort in reverse
     listViewSortByColumn: "name",
+*/
 
-    customInfoboxHtml: " \
-        {{#if isListView}} \
-            <div> \
-        {{else}} \
-            <div class='infobox-map'> \
-        {{/if}} \
-        <div class='score {{row.last_score_category}}'><span id='score-text'>{{row.last_score}}</span></div> \
-        <h4 class='infobox-header'>{{row.name}}</h4> \
-        <p class='ui-li-desc infobox-subheader'> \
-        {{#if isListView}} \
-            {{row.address}}</p> \
-        {{else}} \
-            <strong>Last inspected: {{row.last_inspection_date}}</strong> \
-            <br>{{row.address}}</p> \
-            <p class='ui-li-desc infobox-subheader'> \
-            {{#if row.violations}} \
-                <b>Recent violations ({{row.violations.length}}):</b> \
-                {{#each row.violations}} \
-                    <br>- {{this}} \
-                {{/each}} \
-            {{else}} \
-                <b>Recent violations:</b> None \
-            {{/if}} \
-        {{/if}} \
-        </p></div>",
+    customInfoboxHtml: $("#infoboxTemplate").html(),
+
+/*
 
     // Infoboxes will also appear (unless blank) on your nearby or search address pins.
     // HTML is OK.  Use "{address}" to denote the entered address for addressPinInfobox.
@@ -238,7 +214,7 @@ $.extend(MapsLib, {
     // 4. MAP PREFERENCES //
     ////////////////////////
 
-/*
+
     // Override the location column in your Fusion Table (useful if you have multiple columns)
     // NOTE: if you have "latitude" and "longitude" columns, just use "latitude"
     //locationColumn:  "latitude",
@@ -248,10 +224,10 @@ $.extend(MapsLib, {
     defaultMapBounds: {
 
         // Use [latitude, longitude] or address
-        center: "San Francisco, CA",
+        center: "United Kingdom",
 
         // "X miles" or "X meters"
-        radius: "6 miles"
+        radius: "500 miles"
     },
 
     // Set useNearbyLocation to false if you don't want to get the user's location.
@@ -261,10 +237,10 @@ $.extend(MapsLib, {
         // If true: use nearby location only if we're within default map bounds
         //          otherwise, post boundsExceededMessage (if non-empty) and use mapDefaultCenter.
         onlyWithinDefaultMapBounds: true,
-        boundsExceededMessage:      "Your location is far away from San Francisco.    Defaulting to city limits.",
+        boundsExceededMessage:      "Your location is far away from the UK.    Defaulting to displaying the UK.",
 
         // use this zoom radius if starting at nearby location
-        nearbyZoomRadius:           "200 meters",
+        nearbyZoomRadius:           "50000 meters",
 
         // Snap to nearby zoom radius when user hits "Nearby"?    Options are:
         // true              = always snap to zoom level
@@ -272,7 +248,7 @@ $.extend(MapsLib, {
         // int               = snap to zoom level if ratio between current and nearby zoom radii
         //                       is greater than this (in either direction)
         snapToNearbyZoomIfRatioGreaterThan: 8
-    },
+    }
 
     // mapOverlays is an array of overlays, where each overlay can be either of the following:
     // A. a FusionTable ID
@@ -284,6 +260,7 @@ $.extend(MapsLib, {
     //            0 = completely invisible
     //            100 = completely opaque
 
+/*
     mapOverlays: [ 
         "1GBiESlYt_Lc9O5PLuLaii1L74HeY7G4O1fMh9OE", // FusionTable ID of another table
         { 

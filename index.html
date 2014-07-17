@@ -6,15 +6,80 @@
 
 <html>
 <head>
-    <meta name="generator" content="HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.10), see www.w3.org">
-    <meta charset="utf-8">
+    <!-- Custom meta tags -->
+    <meta name="description" content="Where to find clinics in the United Kingdom that will provide Varicella (Chicken Pox) vaccinations for children.">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- End custom meta tags -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
     <link rel="icon" type="image/png" href="favicon.ico"/>
 
-    <title>Mobile Fusion Table</title>
+    <!-- Custom content -->
+    <script id="infoboxTemplate" type="text/x-handlebars-template">
+        {{#if row.logo}}
+        <img src="{{row.logo}}"/>
+        {{/if}}
+
+        <dl>
+            <dt>Name</dt>
+            <dd>{{row.name}}</dd>
+            <dt>Phone</dt>
+            <dd><div id="phone">{{row.phone}}</div></dd>
+            <dt>Address</dt>
+            <dd>{{row.location}}</dd>
+            <dt>Google+ page</dt>
+            <dd><div id="row.googlePlusPage"/></dd>
+        </dl>
+
+        {{#if row.facebook_pageid}}
+        <a href="http://facebook.com/{{row.facebook_pageid}}">Facebook page</a>
+        {{/if}}
+    </script>
+
+    <style type="text/css">
+        dt {
+            float: left;
+            clear: left;
+            width: 100px;
+            text-align: right;
+            font-weight: bold;
+            color: green;
+        }
+        dt:after {
+            content: ":";
+        }
+        dd {
+            margin: 0 0 0 110px;
+            padding: 0 0 0.5em 0;
+        }
+
+        table {
+            border:none;
+            border-collapse: collapse;
+        }
+        table td, table th {
+            border-left: 1px solid green;
+            border-right: 1px solid green;
+        }
+
+        table td:first-child {
+            border-left: none;
+        }
+
+        table td:last-child {
+            border-right: none;
+        }
+
+        table th {
+            background-color: blue;
+            color: white;
+        }
+    </style>
+    <!-- end Custom content -->
+
+    <title>Varicella (Chicken Pox) vaccination clinics UK</title>
     <!-- if updating jQueryMobile, please see MOBILE-FUSION-TABLES comments in current version -->
     <link rel="stylesheet" href="source/jquery.mobile-1.3.1.modified.min.css" type="text/css"/>
 
@@ -127,6 +192,84 @@
         </div>
 
         <div data-role="content" id="section-about">
+            <!-- Not used -->
+        </div>
+        <div id="about-content" style="max-width: 1000px; margin-left: auto; margin-right: auto;">
+            <h1><a href="mailto:info@varicella.uk">info@varicella.uk</a></h1>
+            <h1>Varicella (Chicken Pox) vaccinations for children in the UK</h1>
+            <p>
+                This website exists to help you decide whether your child would benefit from a Varicella (Chicken Pox)
+                vaccine in the United Kingdom. A current course of two injections is priced at around £200. Varicella
+                vaccinations are not typically offered to children by NHS GP practices; this website lists the private
+                clinics that make it available. They're typically the same clinics that offer private travel
+                vaccinations for adults.
+            </p>
+            <!-- Map created by http://www.aneki.com/map.php -->
+            <img src="vaccination-map.png" width="440" height="220" style="float:left;" hspace="10px"/>
+            <p>
+                The varicella vaccine has been routinely given to children in the United States since 2005, as part
+                of their MMRV programme. This is similar to the UK's MMR (Measles, Mumps, Rubella) vaccination; the
+                additional V is for Varicella. In Europe, most countries do not vaccinate against Varicella, the
+                main exception being Germany (where Chicken Pox is called "Windpocken")
+                which has immunised children routinely since July 2004.
+                Canada, Australia, Japan and South Korea routinely vaccinate children against Varicella.
+            </p>
+
+            <p style="clear: both;">
+                If you feel that there's valuable information missing from this curated page
+                then please email <a href="mailto:info@varicella.uk">info@varicella.uk</a> with links and a summary in your own words. If the link isn't
+                added, we will aim to do you the courtesy of listing it on the page of
+                <a href="#rejected-information">rejected information</a>.
+                If you feel that there are any inaccuracies or bias we'd be happy to hear from you and,
+                after consideration, we'll put it right if required.
+            </p>
+
+            <h2>
+                <a href="http://www.theguardian.com/science/occams-corner/2014/may/15/real-reason-british-public-chickenpox-vaccine-shingles">
+                    Guardian Article: "What’s the real reason Britons aren't offered the chickenpox vaccine?"
+                </a>
+            </h2>
+            <p>
+                Argues that there are two significant reasons for the United Kingdom not considering a routine Varicella
+                vaccination programme:
+            </p>
+            <ul>
+                <li>
+                    The failure to get (almost) every child vaccinated with MMR. The appetite for rolling out a UK-wide
+                    programme is low when some parents are deciding to not even protect their children against Measles.
+                    Changing the MMR program and risking confusion and a further reduction in the uptake is not an
+                    option.
+                </li>
+                <li>
+                    Concerns about the older population in the UK potentially suffering from higher rates of Shingles.
+                </li>
+            </ul>
+
+            <h1>Rejected information</h1>
+
+            For completeness, here are pieces of information that we have chosen not to link to from this page.
+            Many of these appear as results of searches for terms like "chickenpox vaccine", and so
+            it's worth listing them to make it clear that we've seen them and deemed that they represent views that are either:
+            <ul>
+                <li>Biased</li>
+                <li>Serving a vested interest</li>
+                <li>Not the accepted scientific view</li>
+            </ul>
+
+            <table>
+                <tr>
+                    <th>Publication</th>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                </tr>
+                <tr>
+                    <td>Telegraph newspaper</td>
+                    <td>9th November 2007</td>
+                    <td>Chickenpox vaccine is bad for children</td>
+                    <td>Richard Halvorsen</td>
+                </tr>
+            </table>
         </div>
     </div>
 
