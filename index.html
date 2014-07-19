@@ -18,6 +18,7 @@
 
     <!-- Custom content -->
     <script id="infoboxTemplate" type="text/x-handlebars-template">
+        <div style="max-width: 400px">
         {{#if row.logo}}
         <img src="{{row.logo}}"/>
         {{/if}}
@@ -25,34 +26,63 @@
         <dl>
             <dt>Name</dt>
             <dd>{{row.name}}</dd>
-            <dt>Phone</dt>
-            <dd><div id="phone">{{row.phone}}</div></dd>
+
+            {{#if row.costInPounds}}
+                <dt>Cost</dt>
+                <dd>£{{row.costInPounds}}</dd>
+            {{/if}}
+
+            {{#if row.course}}
+                <dt>Course</dt>
+                <dd>{{row.course}}</dd>
+            {{/if}}
+
+            {{#if row.applicationFormUrl}}
+                <dt>Application Form</dt>
+                <dd><a href="{{row.applicationFormUrl}}">Open...</a></dd>
+            {{/if}}
+
+            {{#if row.phone}}
+                <dt>Phone</dt>
+                <dd>{{row.phone}}</dd>
+            {{/if}}
+
+            {{#if row.email}}
+                <dt>Email</dt>
+                <dd><a href="mailto:{{row.email}}?subject=Enquiry originating from varicella.uk about child vaccination">{{row.email}}</a></dd>
+            {{/if}}
+
+            {{#if row.website}}
+                <dt>Website</dt>
+                <dd><a href="{{row.website}}">{{row.website}}</a></dd>
+            {{/if}}
+
             <dt>Address</dt>
             <dd>{{row.location}}</dd>
-            <dt>Google+ page</dt>
-            <dd><div id="row.googlePlusPage"/></dd>
-        </dl>
 
-        {{#if row.facebook_pageid}}
-        <a href="http://facebook.com/{{row.facebook_pageid}}">Facebook page</a>
-        {{/if}}
+            {{#if row.facebook_pageid}}
+                <dt>Facebook page</dt>
+                <dd><a href="http://facebook.com/{{row.facebook_pageid}}">http://facebook.com/{{row.facebook_pageid}}</a></dd>
+            {{/if}}
+        </dl>
+        </div>
     </script>
 
     <style type="text/css">
-        dt {
+        dl dt {
             float: left;
             clear: left;
+            white-space: nowrap;
             width: 100px;
             text-align: right;
             font-weight: bold;
             color: green;
         }
-        dt:after {
+        dl dt:after {
             content: ":";
         }
-        dd {
+        dl dd {
             margin: 0 0 0 110px;
-            padding: 0 0 0.5em 0;
         }
 
         table {
