@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script type="text/javascript" src="source/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+    <script type="text/javascript">
+
+        var map;
+        var service;
+
+        $(function(){
+            var unitedkingdom = new google.maps.LatLng(53.1583,-1.428223);
+
+            map = new google.maps.Map(document.getElementById('mapDiv'), {
+                center: unitedkingdom,
+                zoom: 15
+            });
+
+            service = new google.maps.places.PlacesService(map);
+
+            getData();
+        });
+
+        function processPlaceIdReponse(result) {
+            var text = "";
+
+            for(var i = 0; i < result.length; i++) {
+                text += result[i].place_id + " " + result[i].name + " " + result[i].formatted_address + "<br/>"
+            }
+
+            $("#result").html(text)
+        }
+
+        function getGooglePlusPageId(buttonRef) {
+            var query = $(buttonRef).parent().siblings(".placeId").html()
+
+            var request = {
+                placeId: query
+            };
+
+            service.getDetails(request, function(place, status) {
+                $("#result").html(place.url)
+            });
+        }
+
+        function getPlaceId(buttonRef) {
+            var query = $(buttonRef).parent().siblings(".searchValue").html()
+
+            var request = {
+                query: query + " uk"
+            };
+            service.textSearch(request, processPlaceIdReponse);
+        }
+
+        function dataHandler(resp) {
+
+            var nameIndex = -1;
+            var googlePlaceIdIndex = -1;
+            var locationIndex = -1;
+            var googlePlusPageIdIndex = -1;
+
+            for (var i = 0; i < resp.columns.length; i++) {
+                if(resp.columns[i] == "name") {
+                    nameIndex = i;
+                }
+                if(resp.columns[i] == "google_placeid") {
+                    googlePlaceIdIndex = i;
+                }
+                if(resp.columns[i] == "googleplus_pageid") {
+                    googlePlusPageIdIndex = i;
+                }
+                if(resp.columns[i] == "location") {
+                    locationIndex = i;
+                }
+            }
+
+            var tableContents = "<table><tr><th>name</th><th>location</th><th>google placeid</th><th>googleplus_pageid</th><th></th></tr>";
+
+            for (var i = 0; i < resp.rows.length; i++) {
+                var nameValue = resp.rows[i][nameIndex];
+                var googlePlaceIdValue = resp.rows[i][googlePlaceIdIndex];
+                var googlePlusPageIdValue = resp.rows[i][googlePlusPageIdIndex];
+                var locationValue = resp.rows[i][locationIndex];
+                var rowContents = "<tr><td class='searchValue'>" + nameValue + "</td>" +
+                        "<td>" + locationValue + "</td>" +
+                        "<td class='placeId'>" + googlePlaceIdValue + "</td>" +
+                        "<td>" + googlePlusPageIdValue + "</td>" +
+                        "<td><button onclick='getPlaceId($(this))'>Get Place Id</button></td>" +
+                        "<td><button onclick='getGooglePlusPageId($(this))'>Get G+ Page</button></td>" +
+                        "</tr>";
+                tableContents += rowContents;
+            }
+
+            tableContents += "</table>";
+
+            $("#tableBody").html(tableContents);
+        }
+
+        function getData() {
+            // Builds a Fusion Tables SQL query and hands the result to  dataHandler
+            var queryUrlHead = 'https://www.googleapis.com/fusiontables/v1/query?sql=';
+            var queryUrlTail = '&key=AIzaSyAZNVaXE2Mo2amJ0QXLGg7PHiZpHDkCZfg';
+            var tableId = '1GS6REYeP3gcm4bXGEZCRXZASB6SoiatBr820t3c';
+
+            // write your SQL as normal, then encode it
+            var query = "SELECT * FROM " + tableId;
+            var queryurl = encodeURI(queryUrlHead + query + queryUrlTail);
+
+            var jqxhr = $.get(queryurl, dataHandler, "jsonp");
+        }
+
+        getData();
+    </script>
+</head>
+<body>
+
+    <div id="tableBody"></div>
+    <div id="mapDiv"></div>
+    <div id="result"></div>
+</body>
+</html>
