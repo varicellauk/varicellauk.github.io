@@ -43,6 +43,11 @@
                 <dd>£{{row.costInPounds}}</dd>
             {{/if}}
 
+            {{#if row.appointments}}
+                <dt>Appointments</dt>
+                <dd>{{row.appointments}}</dd>
+            {{/if}}
+
             {{#if row.course}}
                 <dt>Course</dt>
                 <dd>{{row.course}}</dd>
