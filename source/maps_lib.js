@@ -546,6 +546,21 @@ $.extend(MapsLib, {
                 var script = MapsLib.loadResource("source/handlebars.js", "js");
                 script.onload = function() {
                     MapsLib.infoboxCompiled = Handlebars.compile(MapsLib.customInfoboxHtml);
+
+                    /*
+                    Add handling for list view; missing numbers are coming through as NaN string
+                    and are not being interpreted by handlebars as a missing value.
+                     */
+                    Handlebars.registerHelper("ifNotNaN", function(value, options) {
+                        if(value == "NaN") {
+                            return options.inverse(this);
+                        } else {
+                            return options.fn(this);
+                        }
+                    });
+                    /*
+                    End handling for list view
+                     */
                 };
             }
         } 

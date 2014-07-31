@@ -39,8 +39,10 @@
             <dd>{{row.name}}</dd>
 
             {{#if row.costInPounds}}
+            {{#ifNotNaN row.costInPounds}}
                 <dt>Cost</dt>
                 <dd>£{{row.costInPounds}}</dd>
+            {{/ifNotNaN}}
             {{/if}}
 
             {{#if row.appointments}}
