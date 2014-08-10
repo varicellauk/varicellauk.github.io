@@ -1506,6 +1506,7 @@ $.extend(MapsLib, {
                 pixelOffset: e.pixelOffset
             });
             MapsLib.infoWindow.open(map);
+            _gaq.push(['_trackEvent', 'Clinic', 'OpenMapInfobox', e.row.name])
         });
         
         MapsLib.setLayerVisibility(); // refresh layers
