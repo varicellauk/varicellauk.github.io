@@ -33,8 +33,9 @@ body {
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', googleAnalyticsAccount]);
-_gaq.push(['_setCustomVar', 1, 'internal', 'Yes', 1]);
+  _gaq.push(['_setAccount', googleAnalyticsAccount]); //defined in common-variables.js
+  _gaq.push(['_setDomainName', googleAnalyticsDomainName]); //defined in common-variables.js
+  _gaq.push(['_setCustomVar', 1, 'internal', 'Yes', 1]);
   _gaq.push(['_trackPageview']);
 
   (function() {
