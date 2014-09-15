@@ -102,6 +102,33 @@
         </div>
     </script>
 
+    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['geochart']}]}"></script>
+
+    <script type="text/javascript">
+        google.setOnLoadCallback(drawRegionsMap);
+
+        function drawRegionsMap() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Country'],
+                ['Germany'],
+                ['United States'],
+                ['Canada'],
+                ['Australia'],
+                ['Japan'],
+                ['South Korea']
+            ]);
+
+            var options = {
+                backgroundColor: { fill:'transparent' }
+            };
+
+            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
     <style type="text/css">
         dl dt {
             float: left;
@@ -294,8 +321,7 @@
                 It's also not difficult to arrange a vaccination.
             </p>
 
-            <!-- Map created by http://www.aneki.com/map.php -->
-            <img src="vaccination-map.png" width="440" height="220" style="float:left;margin-right:10px" alt="Map showing countries that routinely vaccinate children against Varicella"/>
+            <div id="regions_div" style="float:left; margin-right:10px; width: 500px; height: 250px;"></div>
             <p>
                 The varicella vaccine has been routinely given to children in the United States since 2005, as part
                 of their MMRV programme. This is similar to the UK's MMR (Measles, Mumps, Rubella) vaccination; the
