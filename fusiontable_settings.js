@@ -148,7 +148,7 @@ $.extend(MapsLib, {
     ///////////////////////
 
     // Title bar (including title of website)
-    title: "Varicella (Chicken Pox) vaccination clinics UK",
+    title: "Chickenpox (Varicella) vaccination clinics for children UK",
 
     // Contents of the About Page.  You can use "{title}" to insert your title.
     aboutPage: "", //Use the "about" information hardcoded into index.html
